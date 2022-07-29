@@ -5,6 +5,7 @@
   },
   "extends": [
     "airbnb",
+    "prettier",
     "airbnb-typescript",
     "plugin:react/recommended",
     "plugin:import/typescript",

@@ -1,7 +1,9 @@
+import Layout from '@layout/Layout'
+
 function App() {
   return (
     <div>
-      <h1 className="text-6xl">hello next vite</h1>
+      <Layout />
     </div>
   )
 }
