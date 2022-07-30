@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ImFilm } from 'react-icons/im'
 import { AiOutlineClose } from 'react-icons/ai'
-import categories from './sidebarConstants'
+import { useGetGenresQuery } from '@services/tmdbApi'
+import categories, { GenresIcons } from './sidebarConstants'
+import type { GenresKeys } from './sidebarConstants'
 
 interface SidebarProps {
   close?: () => void
 }
 
 function Sidebar({ close }: SidebarProps) {
+  const { data } = useGetGenresQuery()
+
   return (
     <nav className="w-60 relative bg-slate-100 dark:bg-slate-900 min-h-screen text-gray-800 dark:text-gray-300">
       <button
@@ -17,24 +21,24 @@ function Sidebar({ close }: SidebarProps) {
       >
         <AiOutlineClose />
       </button>
-      <div className="py-5 px-4">
+      <div className="py-3 md:py-5 px-4">
         <Link
           to="/"
-          className="flex justify-center items-center text-3xl py-2  text-purple-700 hover:text-purple-500 hover:scale-105 dark:text-gray-200  dark:hover:text-gray-100  transition"
+          className="flex justify-center items-center text-xl md:text-2xl lg:text-3xl py-2  text-purple-700 hover:text-purple-500 hover:scale-105 dark:text-gray-200  dark:hover:text-gray-100  transition"
         >
           <ImFilm />
           <h1 className="ml-2 font-extralight uppercase tracking-wide">movieflix</h1>
         </Link>
       </div>
       {/* Categories */}
-      <div className="px-4">
-        <h3 className="text-lg text-gray-400 my-3">Categories</h3>
+      <div className="p-2 md:p-4">
+        <h3 className="md:text-lg text-gray-400 my-3">Categories</h3>
         <ul>
           {categories.map(({ label, value, Icon }) => (
             <li key={value}>
               <Link
                 to={`/${value}`}
-                className="py-3 flex items-center text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
+                className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
               >
                 <Icon />
                 <p>{label}</p>
@@ -44,6 +48,26 @@ function Sidebar({ close }: SidebarProps) {
         </ul>
       </div>
       {/* To do fetch from api and display */}
+      <div className="p-2 md:p-4">
+        <h3 className="text-lg text-gray-400 my-3">Genres</h3>
+        <ul>
+          {data?.genres?.map(({ name, id }) => {
+            const Icon = GenresIcons[name as GenresKeys]
+
+            return (
+              <li key={id}>
+                <Link
+                  to={`/${name}`}
+                  className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
+                >
+                  <Icon />
+                  <p>{name}</p>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </nav>
   )
 }

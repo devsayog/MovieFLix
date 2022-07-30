@@ -46,7 +46,7 @@ function AppbarandSidebar() {
                   leaveFrom="translate-x-0"
                   leaveTo="-translate-x-full"
                 >
-                  <Dialog.Panel>
+                  <Dialog.Panel className="overflow-y-scroll">
                     <Sidebar close={onClose} />
                   </Dialog.Panel>
                 </Transition.Child>
