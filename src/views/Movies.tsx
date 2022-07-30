@@ -1,5 +1,7 @@
+import Error from '@components/common/Error'
 import HeroMovie from '@components/common/HeroMovie'
 import MovieList from '@components/common/MovieList'
+import Spinner from '@components/common/Spinner'
 import { useGetMoviesQuery } from '@services/tmdbApi'
 import type { MoviesType, MovieType } from '../types/tmdbTypes'
 
@@ -7,18 +9,10 @@ function Movies() {
   const { data, isError, isFetching } = useGetMoviesQuery()
 
   if (isFetching) {
-    return (
-      <div>
-        <h1>Fetching</h1>
-      </div>
-    )
+    return <Spinner />
   }
   if (isError) {
-    return (
-      <div>
-        <h1>Error</h1>
-      </div>
-    )
+    return <Error message="Oops!! Something went wrong. Please try again later!!" />
   }
 
   return (
