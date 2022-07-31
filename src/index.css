@@ -1,7 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.btn {
+  @apply rounded-full px-4 md:px-5 text-sm sm:text-base md:text-lg lg:text-xl focus:outline-none focus-visible:ring-2 ring-offset-2 hover:scale-105 ring-offset-slate-800 hover:-translate-y-1 transition;
+}
 .primary-btn {
-  @apply shadow-sm shadow-slate-700  rounded-full px-4 md:px-5 py-2 md:py-3 text-sm sm:text-base md:text-lg lg:text-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 ring-offset-2 hover:scale-105 ring-offset-slate-800 hover:-translate-y-1 transition;
+  @apply py-2 md:py-3 shadow-sm shadow-slate-700 btn focus-visible:ring-purple-400;
+}
+.outline-btn {
+  @apply btn py-1 border border-gray-800 shadow-none focus-visible:ring-offset-slate-200 dark:border-gray-100;
+}
+.heading-4 {
+  @apply text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl;
+}
+.heading-5 {
+  @apply font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl;
+}
+.paragraph {
+  @apply text-xs sm:text-sm md:text-base lg:text-lg;
+}
+.bg-btn {
+  @apply paragraph px-3 py-1 bg-purple-500 dark:bg-purple-800 rounded  hover:scale-105 transition-transform focus:outline-none dark:ring-slate-200 focus-visible:ring-2;
 }

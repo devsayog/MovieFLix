@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import MovieDescription from './MovieDescription'
 import Movies from './Movies'
 
 function AppRoutes() {
@@ -7,7 +8,7 @@ function AppRoutes() {
       <Route path="/">
         <Route index element={<Movies />} />
         <Route path="movies" element={<Movies />} />
-        <Route path="movies/:id" element={<h1>Movie Desc page</h1>} />
+        <Route path="movies/:id" element={<MovieDescription />} />
       </Route>
     </Routes>
   )

@@ -12,8 +12,8 @@ function HeroMovie({ movie }: { movie: MovieType }) {
     >
       <div className="absolute inset-0 bg-black opacity-40" />
       <div className="relative flex flex-col space-y-2 md:space-y-3 p-3 w-11/12 md:w-3/4 lg:w-2/3 z-10 text-gray-200">
-        <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">{movie.title}</h4>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg">{movie.overview}</p>
+        <h4 className="heading-4">{movie.title}</h4>
+        <p className="paragraph">{movie.overview}</p>
         <Link to={`/movies/${movie.id}`} className="self-start primary-btn bg-purple-700">
           Read more &rarr;
         </Link>
