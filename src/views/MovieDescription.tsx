@@ -2,15 +2,21 @@ import { AiOutlineCheck } from 'react-icons/ai'
 import { Link, useParams } from 'react-router-dom'
 import Rating from '@components/common/Rating'
 import { imageUrl } from '@constants/appConstants'
-import { useGetMovieQuery } from '@services/tmdbApi'
+import { useGetMovieQuery, useGetRecommendationQuery } from '@services/tmdbApi'
 import { GenresIcons, GenresKeys } from '@components/common/sidebar/sidebarConstants'
 import { MdOutlineLanguage, MdOutlineLocalMovies, MdOutlineTheaters } from 'react-icons/md'
 import Spinner from '@components/common/Spinner'
 import Error from '@components/common/Error'
+import MovieList from '@components/common/MovieList'
 
 function MovieDescription() {
   const { id } = useParams()
   const { data, isError, isFetching } = useGetMovieQuery(id as string)
+  const {
+    data: recomendationMovies,
+    isError: recomendationMoviesError,
+    isFetching: recomendationMoviesFetching,
+  } = useGetRecommendationQuery(id as string)
 
   if (isFetching) {
     return <Spinner />
@@ -25,7 +31,7 @@ function MovieDescription() {
   }
 
   return (
-    <section className="pt-3">
+    <section className="pt-3 flex flex-col space-y-4 md:space-y-6 lg:space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-4 justify-items-center">
         <img
           className="h-96 shadow-2xl rounded hover:scale-105 transition"
@@ -116,7 +122,18 @@ function MovieDescription() {
           )}
         </div>
       </figure>
-      {/* TODO fetch recomented movie and display */}
+      <section>
+        <h5 className="heading-5 p-1 md:p-2 border-b border-gray-500">You may also like</h5>
+        {recomendationMoviesError && (
+          <Error message="Oops!! Something went wrong. Please try again later!!" />
+        )}
+        {recomendationMoviesFetching && <Spinner />}
+        {recomendationMovies ? (
+          <MovieList movies={recomendationMovies} numberOfMovies={12} />
+        ) : (
+          <p className="heading-5 bg-green-600 p-3">Sorry nothing was found!!</p>
+        )}
+      </section>
     </section>
   )
 }
