@@ -1,10 +1,11 @@
+import ThemeContextProvider from '@context/ThemeContext'
 import Layout from '@layout/Layout'
 
 function App() {
   return (
-    <div>
+    <ThemeContextProvider>
       <Layout />
-    </div>
+    </ThemeContextProvider>
   )
 }
 
