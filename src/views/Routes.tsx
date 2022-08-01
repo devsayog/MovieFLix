@@ -8,6 +8,7 @@ function AppRoutes() {
       <Route path="/">
         <Route index element={<Movies />} />
         <Route path="movies" element={<Movies />} />
+        <Route path="movies/:genreOrCat" element={<Movies />} />
         <Route path="movies/:id" element={<MovieDescription />} />
       </Route>
     </Routes>

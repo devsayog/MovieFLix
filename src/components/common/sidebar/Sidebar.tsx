@@ -37,7 +37,7 @@ function Sidebar({ close }: SidebarProps) {
           {categories.map(({ label, value, Icon }) => (
             <li key={value}>
               <Link
-                to={`/${value}`}
+                to={`/movies/${value}`}
                 className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
               >
                 <Icon />
@@ -57,7 +57,7 @@ function Sidebar({ close }: SidebarProps) {
             return (
               <li key={id}>
                 <Link
-                  to={`/${name}`}
+                  to={`/movies/${id}`}
                   className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
                 >
                   <Icon />
