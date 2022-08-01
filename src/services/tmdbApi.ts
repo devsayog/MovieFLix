@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Genres, MovieDescriptionType, MoviesType } from '../types/tmdbTypes'
+import type { ActorDetailsType, Genres, MovieDescriptionType, MoviesType } from '../types/tmdbTypes'
 
 const tmdbApiKey = import.meta.env.VITE_TMDB_API_KEY as string
 
@@ -17,6 +17,9 @@ const tmdbApi = createApi({
     }),
     getRecommendation: builder.query<MoviesType, string>({
       query: (id) => `movie/${id}/recommendations?api_key=${tmdbApiKey}`,
+    }),
+    getActorDetails: builder.query<ActorDetailsType, string>({
+      query: (id) => `/person/${id}?api_key=${tmdbApiKey}`,
     }),
     getMovies: builder.query<MoviesType, GetMoviesParamsType>({
       // to do search ---> search functionality
@@ -42,7 +45,12 @@ type GetMoviesParamsType = {
   genreIdOrCategoryName?: number | string
 }
 
-export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery, useGetRecommendationQuery } =
-  tmdbApi
+export const {
+  useGetGenresQuery,
+  useGetMoviesQuery,
+  useGetMovieQuery,
+  useGetRecommendationQuery,
+  useGetActorDetailsQuery,
+} = tmdbApi
 
 export default tmdbApi
