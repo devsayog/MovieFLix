@@ -11,9 +11,8 @@ interface SidebarProps {
 
 function Sidebar({ close }: SidebarProps) {
   const { data } = useGetGenresQuery()
-
   return (
-    <nav className="w-60 relative bg-slate-100 dark:bg-slate-900 min-h-screen text-gray-800 dark:text-gray-300">
+    <nav className="w-60 relative md:fixed md:inset-0 md:overflow-y-scroll z-50 bg-slate-100 dark:bg-slate-900 text-gray-800 dark:text-gray-300">
       <button
         onClick={close && close}
         type="button"

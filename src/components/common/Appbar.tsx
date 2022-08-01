@@ -5,7 +5,7 @@ interface AppbarProps {
 }
 function Appbar({ open }: AppbarProps) {
   return (
-    <div className="fixed inset-x-0 md:left-60 p-2 h-20 flex items-center justify-between bg-purple-700 text-lg text-gray-200 dark:bg-gray-800">
+    <div className="fixed z-10 inset-x-0 md:left-60 p-2 h-20 flex items-center justify-between bg-purple-700 text-lg text-gray-200 dark:bg-gray-800">
       <button
         type="button"
         onClick={open}
