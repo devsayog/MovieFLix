@@ -10,7 +10,7 @@ interface MovieProps {
 function Movie({ movie }: MovieProps) {
   return (
     <div className="p-3 rounded dark:shadow-slate-700 shadow-md dark:bg-gray-800 hover:-translate-y-2 transition">
-      <Link className="flex flex-col items-center space-y-3" to={`/movies/${movie.id}`}>
+      <Link className="flex flex-col items-center space-y-3" to={`/movie/${movie.id}`}>
         <img
           className="rounded w-full h-[250px] object-cover transition hover:scale-105"
           alt={movie.title}
