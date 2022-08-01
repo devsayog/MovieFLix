@@ -1,14 +1,20 @@
 import { useParams } from 'react-router-dom'
-import { useGetActorDetailsQuery } from '@services/tmdbApi'
+import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from '@services/tmdbApi'
 import { imageUrl } from '@constants/appConstants'
 import { MdOutlineLocalMovies } from 'react-icons/md'
 import Spinner from '@components/common/Spinner'
 import Error from '@components/common/Error'
+import MovieList from '@components/common/MovieList'
 
 function ActorDescription() {
   const { id } = useParams()
   const { data, isFetching, isError } = useGetActorDetailsQuery(id as string)
 
+  const {
+    data: movies,
+    isError: moviesError,
+    isFetching: moviesFetching,
+  } = useGetMoviesByActorIdQuery(id as string)
   if (isFetching) {
     return <Spinner />
   }
@@ -52,7 +58,18 @@ function ActorDescription() {
           </div>
         </article>
       </div>
-      {/* TODO fetch actor's movie and display */}
+      <section>
+        <h5 className="heading-5 p-1 md:p-2 border-b border-gray-500">
+          More <span className="font-normal">{data?.name}</span> Movies
+        </h5>
+        {moviesError && <Error message="Oops!! Something went wrong. Please try again later!!" />}
+        {moviesFetching && <Spinner />}
+        {movies ? (
+          <MovieList movies={movies} numberOfMovies={12} />
+        ) : (
+          <p className="heading-5 bg-green-600 p-3">Sorry nothing was found!!</p>
+        )}
+      </section>
     </section>
   )
 }

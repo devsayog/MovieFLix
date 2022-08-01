@@ -10,16 +10,19 @@ const tmdbApi = createApi({
   }),
   endpoints: (builder) => ({
     getGenres: builder.query<Genres, void>({
-      query: () => `genre/movie/list?api_key=${tmdbApiKey}`,
+      query: () => `/genre/movie/list?api_key=${tmdbApiKey}`,
     }),
     getMovie: builder.query<MovieDescriptionType, string>({
       query: (id) => `/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
     }),
     getRecommendation: builder.query<MoviesType, string>({
-      query: (id) => `movie/${id}/recommendations?api_key=${tmdbApiKey}`,
+      query: (id) => `/movie/${id}/recommendations?api_key=${tmdbApiKey}`,
     }),
     getActorDetails: builder.query<ActorDetailsType, string>({
       query: (id) => `/person/${id}?api_key=${tmdbApiKey}`,
+    }),
+    getMoviesByActorId: builder.query<any, string>({
+      query: (id) => `/discover/movie?with_cast=${id}&page=1&api_key=${tmdbApiKey}`,
     }),
     getMovies: builder.query<MoviesType, GetMoviesParamsType>({
       // to do search ---> search functionality
@@ -51,6 +54,7 @@ export const {
   useGetMovieQuery,
   useGetRecommendationQuery,
   useGetActorDetailsQuery,
+  useGetMoviesByActorIdQuery,
 } = tmdbApi
 
 export default tmdbApi
