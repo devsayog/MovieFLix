@@ -1,11 +1,12 @@
-/* eslint-disable react/jsx-no-bind */
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Appbar from '@components/common/Appbar'
 import Sidebar from '@components/common/sidebar/Sidebar'
+import useScreenResize from '@hooks/useScreenResize'
 
 function AppbarandSidebar() {
   const [open, setOpen] = useState(false)
+  const { isMd } = useScreenResize()
 
   const onOpen = () => {
     setOpen(true)
@@ -13,15 +14,18 @@ function AppbarandSidebar() {
   const onClose = () => {
     setOpen(false)
   }
+  useEffect(() => {
+    if (isMd) {
+      onClose()
+    }
+  }, [isMd])
 
   return (
     <>
       <Appbar open={onOpen} />
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
+      {isMd && <Sidebar />}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10 md:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="ease-in-out duration-500"
@@ -32,7 +36,10 @@ function AppbarandSidebar() {
             leaveTo="opacity-0"
           >
             {/* Overlay */}
-            <div className="fixed inset-0 bg-gray-700 bg-opacity-80 tansition-opacity" />
+            <div
+              className="fixed inset-0 bg-gray-700 bg-opacity-80 tansition-opacity"
+              aria-hidden="true"
+            />
           </Transition.Child>
           <div className="fixed inset-0 overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
