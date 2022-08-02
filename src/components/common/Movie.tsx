@@ -15,9 +15,7 @@ function Movie({ movie }: MovieProps) {
           className="rounded w-full h-[250px] object-cover transition hover:scale-105"
           alt={movie.title}
           src={
-            movie.poster_path
-              ? `${imageUrl}w500/${movie.poster_path}`
-              : 'https://fillmurray.com/200/300'
+            movie.poster_path ? `${imageUrl}w500${movie.poster_path}` : '/poster-placeholder.webp'
           }
         />
         <Tooltip message={movie.title}>
