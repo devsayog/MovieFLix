@@ -29,17 +29,17 @@ const tmdbApi = createApi({
     }),
     getMovies: builder.query<MoviesType, GetMoviesParamsType>({
       // page -----> pagination
-      query: ({ genreIdOrCategoryName }) => {
+      query: ({ genreIdOrCategoryName, page = 1 }) => {
         // check genreIdOrCategoryName is Number or String
         // Number() check return NaN if string
         // !! check for undefined ie. when no genresOrCats is provided
         const value = !!genreIdOrCategoryName && Number(genreIdOrCategoryName)
-        let url = `movie/popular?page=1&api_key=${tmdbApiKey}`
+        let url = `movie/popular?page=${page}&api_key=${tmdbApiKey}`
         if (typeof value === 'number') {
-          url = `discover/movie?with_genres=${value}&page=1&api_key=${tmdbApiKey}`
+          url = `discover/movie?with_genres=${value}&page=${page}&api_key=${tmdbApiKey}`
         }
         if (Number.isNaN(value)) {
-          url = `movie/${genreIdOrCategoryName}?page=1&api_key=${tmdbApiKey}`
+          url = `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`
         }
         return url
       },
@@ -48,6 +48,7 @@ const tmdbApi = createApi({
 })
 type GetMoviesParamsType = {
   genreIdOrCategoryName?: number | string
+  page?: number
 }
 
 export const {
