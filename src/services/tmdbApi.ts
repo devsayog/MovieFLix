@@ -21,11 +21,13 @@ const tmdbApi = createApi({
     getActorDetails: builder.query<ActorDetailsType, string>({
       query: (id) => `/person/${id}?api_key=${tmdbApiKey}`,
     }),
-    getMoviesByActorId: builder.query<any, string>({
+    getMoviesByActorId: builder.query<MoviesType, string>({
       query: (id) => `/discover/movie?with_cast=${id}&page=1&api_key=${tmdbApiKey}`,
     }),
+    searchMovies: builder.query<MoviesType, string>({
+      query: (searchQuery) => `/search/movie?query=${searchQuery}&page=${1}&api_key=${tmdbApiKey}`,
+    }),
     getMovies: builder.query<MoviesType, GetMoviesParamsType>({
-      // to do search ---> search functionality
       // page -----> pagination
       query: ({ genreIdOrCategoryName }) => {
         // check genreIdOrCategoryName is Number or String
@@ -55,6 +57,7 @@ export const {
   useGetRecommendationQuery,
   useGetActorDetailsQuery,
   useGetMoviesByActorIdQuery,
+  useLazySearchMoviesQuery,
 } = tmdbApi
 
 export default tmdbApi
