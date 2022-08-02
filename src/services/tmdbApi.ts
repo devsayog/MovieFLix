@@ -21,8 +21,9 @@ const tmdbApi = createApi({
     getActorDetails: builder.query<ActorDetailsType, string>({
       query: (id) => `/person/${id}?api_key=${tmdbApiKey}`,
     }),
-    getMoviesByActorId: builder.query<MoviesType, string>({
-      query: (id) => `/discover/movie?with_cast=${id}&page=1&api_key=${tmdbApiKey}`,
+    getMoviesByActorId: builder.query<MoviesType, GetMoviesByActorIdParamsType>({
+      query: ({ id, page = 1 }) =>
+        `/discover/movie?with_cast=${id}&page=${page}&api_key=${tmdbApiKey}`,
     }),
     searchMovies: builder.query<MoviesType, string>({
       query: (searchQuery) => `/search/movie?query=${searchQuery}&page=${1}&api_key=${tmdbApiKey}`,
@@ -48,6 +49,10 @@ const tmdbApi = createApi({
 })
 type GetMoviesParamsType = {
   genreIdOrCategoryName?: number | string
+  page?: number
+}
+type GetMoviesByActorIdParamsType = {
+  id: string
   page?: number
 }
 

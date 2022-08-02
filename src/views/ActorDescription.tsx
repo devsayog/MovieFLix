@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from '@services/tmdbApi'
 import { imageUrl } from '@constants/appConstants'
 import { MdOutlineLocalMovies } from 'react-icons/md'
 import Spinner from '@components/common/Spinner'
 import Error from '@components/common/Error'
 import MovieList from '@components/common/MovieList'
+import Pagination from '@components/common/pagination/Pagination'
 
 function ActorDescription() {
+  const [page, setPage] = useState(1)
   const { id } = useParams()
   const { data, isFetching, isError } = useGetActorDetailsQuery(id as string)
 
@@ -14,7 +17,10 @@ function ActorDescription() {
     data: movies,
     isError: moviesError,
     isFetching: moviesFetching,
-  } = useGetMoviesByActorIdQuery(id as string)
+  } = useGetMoviesByActorIdQuery({
+    id,
+    page,
+  })
   if (isFetching) {
     return <Spinner />
   }
@@ -68,6 +74,14 @@ function ActorDescription() {
           <MovieList movies={movies} numberOfMovies={12} />
         ) : (
           <p className="heading-5 bg-green-600 p-3">Sorry nothing was found!!</p>
+        )}
+        {movies && (
+          <Pagination
+            currentPage={page}
+            setPage={setPage}
+            totalPages={movies?.total_pages}
+            totalResults={movies?.total_results}
+          />
         )}
       </section>
     </section>
