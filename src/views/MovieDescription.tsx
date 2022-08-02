@@ -56,15 +56,16 @@ function MovieDescription() {
                 <div className="flex items-center justify-around space-x-3">
                   <Rating count={data?.vote_average} />
                   <p className="flex items-center space-x-1">
-                    <AiOutlineCheck /> <span>Duration: {data.runtime}min</span>
+                    <AiOutlineCheck />{' '}
+                    <span>Duration: {!data.runtime ? 'Unknown' : `${data.runtime} min`}</span>
                   </p>
                   <p className="flex items-center space-x-2">
-                    <AiOutlineCheck /> <span> Language: {data.spoken_languages[0].name}</span>
+                    <AiOutlineCheck /> <span> Language: {data.spoken_languages[0]?.name}</span>
                   </p>
                 </div>
                 <div className="flex justify-around flex-wrap gap-3">
-                  {data.genres.map((genre) => {
-                    const Icon = GenresIcons[genre.name as GenresKeys]
+                  {data.genres?.map((genre) => {
+                    const Icon = GenresIcons[genre?.name as GenresKeys]
                     return (
                       <Link
                         to={`/${genre.id}`}
