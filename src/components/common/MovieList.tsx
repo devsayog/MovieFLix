@@ -10,7 +10,7 @@ interface MovieListProps {
 function MovieList({ movies, exclude, numberOfMovies }: MovieListProps) {
   const numMovies = numberOfMovies === 0 ? undefined : numberOfMovies
   return (
-    <div className="mt-3 flex gap-4 justify-center flex-wrap overflow-hidden">
+    <div className="my-4 flex gap-4 justify-center flex-wrap overflow-hidden">
       {movies.results.slice(exclude, numMovies).map((movie) => (
         <Movie key={generateUniqueId()} movie={movie} />
       ))}
