@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BsBrightnessHighFill, BsBrightnessHigh } from 'react-icons/bs'
 import { HiMenuAlt1 } from 'react-icons/hi'
+import { useHotkeys } from 'react-hotkeys-hook'
 import SearchBox from './SearchBox'
 
 interface AppbarProps {
@@ -12,6 +13,10 @@ interface AppbarProps {
 function Appbar({ open }: AppbarProps) {
   const { mode, toggleMode } = useThemeContext()
   const [searchModalOpen, setSearchModalOpen] = useState(false)
+  useHotkeys('ctrl + k', (e) => {
+    e.preventDefault()
+    setSearchModalOpen(true)
+  })
 
   return (
     <>
