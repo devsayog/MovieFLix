@@ -11,7 +11,7 @@ function HeroMovie({ movie }: { movie: MovieType }) {
       className="relative mb-5 flex items-end h-[500px] bg-cover rounded w-full"
     >
       <div className="absolute inset-0 bg-black opacity-40" />
-      <div className="relative flex flex-col space-y-2 md:space-y-3 p-3 w-11/12 md:w-3/4 lg:w-2/3 z-10 text-gray-200">
+      <div className="relative flex flex-col space-y-2 md:space-y-3 p-3 w-11/12 md:w-3/4 lg:w-2/3 z-[5] text-gray-200">
         <h4 className="heading-4">{movie.title}</h4>
         <p className="paragraph">{movie.overview}</p>
         <Link to={`/movie/${movie.id}`} className="self-start primary-btn bg-purple-700">
