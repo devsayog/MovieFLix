@@ -1,6 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #cfcfcf;
+}
+::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
 .btn {
   @apply rounded-full px-4 md:px-5 text-sm sm:text-base md:text-lg lg:text-xl focus:outline-none focus-visible:ring-2 ring-offset-2 hover:scale-105 ring-offset-slate-800 hover:-translate-y-1 transition;
 }
