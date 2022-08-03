@@ -20,7 +20,7 @@ function Appbar({ open }: AppbarProps) {
 
   return (
     <>
-      <div className="fixed z-10 inset-x-0 md:left-60 p-2 h-20 flex items-center justify-between bg-purple-700 text-lg text-gray-200 dark:bg-gray-800">
+      <div className="fixed z-10 inset-x-0 md:left-60 p-2 h-20 flex items-center justify-between bg-purple-700 text-lg text-gray-200 dark:bg-slate-800 shadow-3xl">
         <button
           type="button"
           onClick={open}
@@ -30,7 +30,7 @@ function Appbar({ open }: AppbarProps) {
           <HiMenuAlt1 />
         </button>
         <div aria-hidden />
-        <div className="flex items-center">
+        <div className="flex items-center space-x-3">
           <div className="bg-slate-200 rounded-md dark:bg-gray-600 relative pointer-events-auto">
             <button
               className="flex text-gray-800 dark:text-gray-200 items-center text-sm leading-6 rounded-md ring-1 ring-gray-400 shadow-sm py-1.5 pl-2 pr-3 hover:opacity-70 transition"
@@ -48,7 +48,7 @@ function Appbar({ open }: AppbarProps) {
             onClick={toggleMode}
           >
             {mode === 'dark' ? <BsBrightnessHighFill /> : <BsBrightnessHigh />}
-            <p className="sr-only">Toggle theme</p>
+            <p className="sr-only">Toggle theme current theme is {mode}</p>
           </button>
         </div>
       </div>
