@@ -1,20 +1,35 @@
-import type { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useCallback } from 'react'
 
 type PaginationTypes<S> = {
   currentPage: number
   setPage: Dispatch<SetStateAction<S>>
   totalPages: number
   totalResults: number
+  scrollToTop?: number
 }
 
-function Pagination({ currentPage, setPage, totalPages, totalResults }: PaginationTypes<number>) {
-  const handlePrev = () => setPage((prev) => prev - 1)
-  const handleNext = () => setPage((prev) => prev + 1)
+function Pagination({
+  currentPage,
+  setPage,
+  totalPages,
+  totalResults,
+  scrollToTop,
+}: PaginationTypes<number>) {
+  const scroll = useCallback(() => window.scroll({ top: scrollToTop, left: 0 }), [])
+
+  const handlePrev = () => {
+    setPage((prev) => prev - 1)
+    scroll()
+  }
+  const handleNext = () => {
+    setPage((prev) => prev + 1)
+    scroll()
+  }
   if (totalPages === 0) return null
   return (
     <div className="border-t border-t-gray-600">
       <div className="flex items-center justify-between py-2">
-        <p className="paragraph">
+        <p className="paragraph hidden sm:block">
           Showing{' '}
           <span className="italic"> {currentPage === 1 ? 1 : (currentPage - 1) * 20 + 1} </span>
           to <span className="italic">
@@ -22,7 +37,7 @@ function Pagination({ currentPage, setPage, totalPages, totalResults }: Paginati
           </span>{' '}
           of <span className="italic"> {totalResults}</span> results
         </p>
-        <div className="flex space-x-1">
+        <div className="ml-auto sm:ml-0 flex space-x-1">
           <button
             onClick={handlePrev}
             type="button"
@@ -43,6 +58,10 @@ function Pagination({ currentPage, setPage, totalPages, totalResults }: Paginati
       </div>
     </div>
   )
+}
+
+Pagination.defaultProps = {
+  scrollToTop: 430,
 }
 
 export default Pagination
