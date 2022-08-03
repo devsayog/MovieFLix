@@ -36,3 +36,6 @@
 .pagination-btn {
   @apply bg-btn disabled:hover:scale-100 disabled:bg-purple-300 dark:disabled:bg-purple-400;
 }
+.nav-link {
+  @apply py-3 px-2 rounded flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 dark:hover:bg-gray-700 hover:text-gray-500 hover:bg-slate-200 transition border-b border-gray-600;
+}

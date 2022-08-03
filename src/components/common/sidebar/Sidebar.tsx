@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { ImFilm } from 'react-icons/im'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useGetGenresQuery } from '@services/tmdbApi'
@@ -18,6 +18,7 @@ function Sidebar({ close }: SidebarProps) {
         type="button"
         className="md:hidden relative left-[75%] top-2 p-2 rounded-full border-2 border-purple-700 dark:border-slate-100 dark:bg-slate-900 bg-slate-100 text-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 ring-offset-slate-100 dark:ring-offset-slate-900   dark:focus-visible:ring-purple-500 focus-visible:ring-slate-900"
       >
+        <p className="sr-only">Close sidebar</p>
         <AiOutlineClose />
       </button>
       <div className="py-3 md:py-5 px-4">
@@ -35,13 +36,16 @@ function Sidebar({ close }: SidebarProps) {
         <ul>
           {categories.map(({ label, value, Icon }) => (
             <li key={value}>
-              <Link
+              <NavLink
+                onClick={close && close}
                 to={`/movies/${value}`}
-                className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
+                className={({ isActive }) =>
+                  isActive ? 'nav-link bg-slate-300 dark:bg-gray-700' : 'nav-link'
+                }
               >
                 <Icon />
                 <p>{label}</p>
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -55,13 +59,16 @@ function Sidebar({ close }: SidebarProps) {
 
             return (
               <li key={id}>
-                <Link
+                <NavLink
+                  onClick={close && close}
                   to={`/movies/${id}`}
-                  className="py-3 flex items-center md:text-lg lg:text-xl space-x-2 dark:hover:text-gray-100 hover:text-gray-500 transition border-b border-gray-600"
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link bg-slate-300 dark:bg-gray-700' : 'nav-link'
+                  }
                 >
                   <Icon />
                   <p>{name}</p>
-                </Link>
+                </NavLink>
               </li>
             )
           })}
