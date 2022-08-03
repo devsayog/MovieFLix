@@ -12,7 +12,7 @@ function Movie({ movie }: MovieProps) {
     <div className="max-w-xs sm:w-auto p-3 rounded dark:shadow-slate-700 shadow-md dark:bg-gray-800 hover:-translate-y-2 transition">
       <Link className="flex flex-col items-center space-y-3" to={`/movie/${movie.id}`}>
         <img
-          className="h-[250px] sm:h-auto rounded w-full object-cover transition hover:scale-105"
+          className="h-60 sm:h-64 rounded w-full object-cover transition hover:scale-105"
           alt={movie.title}
           src={
             movie.poster_path ? `${imageUrl}w500${movie.poster_path}` : '/poster-placeholder.webp'
