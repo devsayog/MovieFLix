@@ -66,7 +66,7 @@ function SearchBox({ modalClose }: SearchBoxType) {
                 <Combobox.Option
                   key={movie.id}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                    `relative cursor-default select-none py-2 pl-4 sm:pl-6 md:pl-8 lg:pl-10 pr-4 ${
                       active
                         ? 'bg-slate-500 text-gray-300 dark:bg-gray-600 dark:text-white'
                         : 'text-gray-700 dark:text-gray-200'
@@ -84,7 +84,7 @@ function SearchBox({ modalClose }: SearchBoxType) {
                               : `${imageUrl}w500${movie.backdrop_path}`
                           }
                           alt={movie.title}
-                          className="h-20 w-32 object-cover"
+                          className="h-20 sm:h-28 w-24 sm:w-auto object-cover"
                         />
                         <figcaption className="paragraph">{movie.title}</figcaption>
                       </figure>

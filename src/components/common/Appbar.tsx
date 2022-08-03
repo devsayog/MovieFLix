@@ -30,10 +30,10 @@ function Appbar({ open }: AppbarProps) {
           <HiMenuAlt1 />
         </button>
         <div aria-hidden />
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           <div className="bg-slate-200 rounded-md dark:bg-gray-600 relative pointer-events-auto">
             <button
-              className="flex text-gray-800 dark:text-gray-200 items-center text-sm leading-6 rounded-md ring-1 ring-gray-400 shadow-sm py-1.5 pl-2 pr-3 hover:opacity-70 transition"
+              className="flex text-gray-800 dark:text-gray-200 items-center text-sm leading-6 rounded-md ring-1 ring-gray-400 shadow-sm py-1.5 pl-2 pr-3 hover:opacity-70 focus:outline-none dark:focus:ring-purple-600 focus-visible:ring-2 transition"
               type="button"
               onClick={() => setSearchModalOpen(true)}
             >
