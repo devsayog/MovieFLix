@@ -24,6 +24,7 @@ function Sidebar({ close }: SidebarProps) {
       <div className="py-3 md:py-5 px-4">
         <Link
           to="/"
+          onClick={close && close}
           className="flex justify-center items-center text-xl md:text-2xl lg:text-3xl py-2  text-purple-700 hover:text-purple-500 hover:scale-105 dark:text-gray-200  dark:hover:text-gray-100  transition"
         >
           <ImFilm />
