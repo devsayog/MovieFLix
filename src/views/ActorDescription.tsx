@@ -18,7 +18,7 @@ function ActorDescription() {
     isError: moviesError,
     isFetching: moviesFetching,
   } = useGetMoviesByActorIdQuery({
-    id,
+    id: id as string,
     page,
   })
   if (isFetching) {
