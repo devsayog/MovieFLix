@@ -76,7 +76,7 @@ function SearchBox({ modalClose }: SearchBoxType) {
                 >
                   {() => (
                     <Link to={`/movie/${movie.id}`} onClick={modalClose}>
-                      <figure className="flex items-center space-x-3">
+                      <figure className="grid grid-cols-[auto,1fr] items-center space-x-3">
                         <img
                           src={
                             movie.backdrop_path === null
@@ -84,7 +84,7 @@ function SearchBox({ modalClose }: SearchBoxType) {
                               : `${imageUrl}w500${movie.backdrop_path}`
                           }
                           alt={movie.title}
-                          className="h-20 sm:h-28 w-24 sm:w-auto object-cover"
+                          className="h-20 sm:h-28 w-24 sm:w-52 object-cover"
                         />
                         <figcaption className="paragraph">{movie.title}</figcaption>
                       </figure>
