@@ -6,6 +6,7 @@ import MovieList from '@components/common/MovieList'
 import Pagination from '@components/common/pagination/Pagination'
 import Spinner from '@components/common/Spinner'
 import { useGetMoviesQuery } from '@services/tmdbApi'
+import Seo from '@components/common/Seo'
 import type { MoviesType, MovieType } from '../types/tmdbTypes'
 
 function Movies() {
@@ -27,6 +28,7 @@ function Movies() {
   }
   return (
     <>
+      <Seo url={window.location.href} />
       <HeroMovie movie={data?.results[0] as MovieType} />
       <MovieList exclude={1} movies={data as MoviesType} />
       <Pagination

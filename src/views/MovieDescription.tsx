@@ -10,6 +10,7 @@ import { MdOutlineLanguage, MdOutlineLocalMovies, MdOutlineTheaters } from 'reac
 import Spinner from '@components/common/Spinner'
 import Error from '@components/common/Error'
 import MovieList from '@components/common/MovieList'
+import Seo from '@components/common/Seo'
 
 function MovieDescription() {
   const [open, setOpen] = useState(false)
@@ -38,6 +39,11 @@ function MovieDescription() {
 
   return (
     <>
+      <Seo
+        url={window.location.href}
+        description={data.tagline}
+        title={`MovieFlix | ${data.title}`}
+      />
       <section className="pt-3 flex flex-col space-y-4 md:space-y-6 lg:space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-4 justify-items-center">
           <img
