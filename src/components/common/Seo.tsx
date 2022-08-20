@@ -8,7 +8,6 @@ type SeoTypes = {
 }
 
 function Seo({ title, description, url, image }: SeoTypes) {
-  console.log(import.meta.env.BASE_URL)
   return (
     <Helmet>
       <title>{title}</title>
